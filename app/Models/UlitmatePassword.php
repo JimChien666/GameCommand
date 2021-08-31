@@ -30,6 +30,23 @@ class UlitmatePassword
         return $this->answer;
     }
 
+    public function setAnswer(int $input)
+    {
+        if($input<$this->min || $input>$this->max){
+            return;
+        }
+        $this->answer = $input;
+    }
+
+    public function setRoundNowWho(int $input)
+    {
+        if($input<0 || $input>$this->player_number-1){
+            return;
+        }
+        $this->round_now_who = $input;
+    }
+
+
     /*
      * 換下一位玩家
      */
