@@ -33,7 +33,7 @@ class UlitmatePassword
     public function setAnswer(int $input)
     {
         if($input<$this->min || $input>$this->max){
-            return;
+            throw new NumberOutOfRangeException("輸入錯誤，請輸入{$this->min}-{$this->max}之間的數字:");
         }
         $this->answer = $input;
     }
@@ -41,7 +41,7 @@ class UlitmatePassword
     public function setRoundNowWho(int $input)
     {
         if($input<0 || $input>$this->player_number-1){
-            return;
+            throw new NumberOutOfRangeException("輸入錯誤，請輸入{$this->min}-{$this->max}之間的數字:");
         }
         $this->round_now_who = $input;
     }
