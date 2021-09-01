@@ -154,7 +154,7 @@ class UlitmatePasswordTest extends TestCase
     }
 
     /**
-     * @testdox 測試$ulitmatePassword->setRoundNowWho方法, 若設定值在0, 玩家數量減一間的數字, 則修改現在玩家
+     * @testdox 測試$ulitmatePassword->setRoundNowWho方法, 若設定值在0及玩家數量減一之間的數字, 則設定值修改為現在玩家
      */
     public function test_set_round_now_who_in_range(){
         
@@ -171,7 +171,7 @@ class UlitmatePasswordTest extends TestCase
     }
 
     /**
-     * @testdox 測試$ulitmatePassword->setRoundNowWho方法, 若設定值不在0, 玩家數量減一間的數字, 則拋例外
+     * @testdox 測試$ulitmatePassword->setRoundNowWho方法, 若設定值不在0及玩家數量減一之間的數字, 則拋例外
      */
     public function test_set_round_now_who_out_of_range(){
         // Assert
@@ -206,7 +206,7 @@ class UlitmatePasswordTest extends TestCase
     }
     
     /**
-     * @testdox 測試$ulitmatePassword->getRecountMinAndMax, 若猜的值大於答案, 則最小值改成猜的值
+     * @testdox 測試$ulitmatePassword->getRecountMinAndMax, 若猜的值大於答案, 則最小值設定為猜的值
      */
     public function test_recount_min_and_max_change_min(){
         // Arrange
@@ -228,7 +228,7 @@ class UlitmatePasswordTest extends TestCase
     }
 
     /**
-     * @testdox 測試$ulitmatePassword->getRecountMinAndMax, 若猜的值小於答案, 則最大值改成猜的值
+     * @testdox 測試$ulitmatePassword->getRecountMinAndMax, 若猜的值小於答案, 則最大值設定為猜的值
      */
     public function test_recount_min_and_max_change_max(){
 
