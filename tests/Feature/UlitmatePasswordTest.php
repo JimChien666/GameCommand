@@ -30,9 +30,11 @@ class UlitmatePasswordTest extends TestCase
     }
 
     /**
-     * @testdox 測試$ulitmatePassword->playerGuessNumber方法, 若輸入的值不在最小值及最大值之間, 則回傳0
+     * @testdox 測試$ulitmatePassword->playerGuessNumber方法, 若輸入的值不在最小值及最大值之間, 則拋出 NumberOutOfRangeException
      */
     public function test_player_guess_number_retrun_0(){
+        // Assert
+        $this->expectException(NumberOutOfRangeException::class);
 
         // Arrange
         $play_number = 2;
@@ -43,9 +45,6 @@ class UlitmatePasswordTest extends TestCase
 
         // Act
         $actual = $ulitmatePassword->playerGuessNumber($input);
-        
-        // Assert
-        $this->assertSame($expected, $actual);
     }
 
     /**

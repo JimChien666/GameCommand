@@ -2,27 +2,26 @@
 
 namespace App\Models;
 
-use Exception;
 use App\Exceptions\NumberOutOfRangeException;
 
-class UlitmatePassword
+class UlitmatePassword extends Game
 {
     private $answer; //終極密碼
     private $min = 1;
     private $max = 100;
-    private $round_now_who; //輪到誰
-    private $player_number; //遊戲人數
+    private $roundNowWho; //這回合輪到誰
 
-    public function __construct($round_now_who, $player_number)
+    public function __construct($playerNumber, $winNumber)
     {
-        $this->round_now_who = $round_now_who;
-        $this->player_number = $player_number;
+        parent::__construct($playerNumber, $winNumber);
+        $this->playerNumber = $playerNumber;
+        $this->roundNowWho = $this->getGameNowWho();
         $this->answer = rand($this->min, $this->max);
     }
 
     public function getRoundNowWho()
     {
-        return $this->round_now_who;
+        return $this->roundNowWho;
     }
 
     public function getAnswer()
@@ -40,10 +39,10 @@ class UlitmatePassword
 
     public function setRoundNowWho(int $input)
     {
-        if($input<0 || $input>$this->player_number-1){
+        if($input<0 || $input>$this->playerNumber-1){
             throw new NumberOutOfRangeException("輸入錯誤，請輸入{$this->min}-{$this->max}之間的數字:");
         }
-        $this->round_now_who = $input;
+        $this->roundNowWho = $input;
     }
 
 
@@ -52,27 +51,23 @@ class UlitmatePassword
      */
     public function getNextPlayer()
     {
-        if ($this->round_now_who + 1 == $this->player_number) {
-            $this->round_now_who = 0;
+        if ($this->roundNowWho + 1 == count($this->getPlayerList())) {
+            $this->roundNowWho = 0;
         } else {
-            $this->round_now_who++;
+            $this->roundNowWho++;
         }
     }
 
     public function playerGuessNumber(string $input)
     {
-        try {
-            if (
-                is_numeric($input)
-                && (int)$input >= $this->min
-                && (int)$input <= $this->max
-            ) {
-                return (int)$input;
-            } else {
-                throw new NumberOutOfRangeException("輸入錯誤，請輸入{$this->min}-{$this->max}之間的數字:");
-            }
-        } catch (Exception $e) {
-            return 0;
+        if (
+            is_numeric($input)
+            && (int)$input >= $this->min
+            && (int)$input <= $this->max
+        ) {
+            return (int)$input;
+        } else {
+            throw new NumberOutOfRangeException("輸入錯誤，請輸入{$this->min}-{$this->max}之間的數字:");
         }
     }
 
@@ -93,5 +88,14 @@ class UlitmatePassword
     public function getMax()
     {
         return $this->max;
+    }
+
+    public function turnOnNextOnePlayer()
+    {
+        parent::turnOnNextOnePlayer();
+        $this->min = 1;
+        $this->max = 100;
+        $this->answer = rand($this->min, $this->max);
+        $this->roundNowWho = $this->getGameNowWho();
     }
 }
