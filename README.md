@@ -9,3 +9,6 @@
 ```
 php artisan game [玩家人數] [獲勝場數]
 ```
+遊戲過程如下
+
+![image](https://jimchien666.github.io/images/post/test1.gif)
