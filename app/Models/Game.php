@@ -21,7 +21,7 @@ class Game
     public function setPlayerList($playerNumber)
     {
         $playerList = [];
-        for($i = 0;$i < $playerNumber; $i++){
+        for ($i = 0; $i < $playerNumber; $i++) {
             $playerList[$i] = 0;
         }
         return $playerList;
@@ -34,8 +34,8 @@ class Game
 
     public function isGameOver(): bool
     {
-        foreach($this->playerList as $player=>$point){
-            if($point == $this->winNumber){
+        foreach ($this->playerList as $player => $point) {
+            if ($point == $this->winNumber) {
                 return true;
             }
         }
@@ -44,8 +44,8 @@ class Game
 
     public function getWinner(): string
     {
-        foreach($this->playerList as $player=>$point){
-            if($point === $this->winNumber){
+        foreach ($this->playerList as $player => $point) {
+            if ($point === $this->winNumber) {
                 return $player;
             }
         }

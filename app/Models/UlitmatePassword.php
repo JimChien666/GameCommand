@@ -6,14 +6,21 @@ use App\Exceptions\NumberOutOfRangeException;
 
 class UlitmatePassword extends Game
 {
+    const RULES = [
+        '遊戲規則同終極密碼遊戲規則(猜到數字者獲勝)',
+        '可自訂遊戲人數(2~5人)及獲勝場數(1~5場)',
+        '當其中一位玩家達到或勝場數 遊戲結束',
+    ];
+
     private $answer; //終極密碼
     private $min = 1;
     private $max = 100;
     private $roundNowWho; //這回合輪到誰
 
+
     public function __construct($playerNumber, $winNumber)
     {
-        parent::__construct($playerNumber, $winNumber);
+        parent::__construct($playerNumber, $winNumber, self::RULES);
         $this->playerNumber = $playerNumber;
         $this->roundNowWho = $this->getGameNowWho();
         $this->answer = rand($this->min, $this->max);
@@ -31,7 +38,7 @@ class UlitmatePassword extends Game
 
     public function setAnswer(int $input)
     {
-        if($input<$this->min || $input>$this->max){
+        if ($input < $this->min || $input > $this->max) {
             throw new NumberOutOfRangeException("輸入錯誤，請輸入{$this->min}-{$this->max}之間的數字:");
         }
         $this->answer = $input;
@@ -39,7 +46,7 @@ class UlitmatePassword extends Game
 
     public function setRoundNowWho(int $input)
     {
-        if($input<0 || $input>$this->playerNumber-1){
+        if ($input < 0 || $input > $this->playerNumber - 1) {
             throw new NumberOutOfRangeException("輸入錯誤，請輸入{$this->min}-{$this->max}之間的數字:");
         }
         $this->roundNowWho = $input;
