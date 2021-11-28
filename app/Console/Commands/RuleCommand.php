@@ -20,10 +20,16 @@ class RuleCommand extends Command
     {
         $game = $this->argument("game");
         $gmaeClass = 'App\\Models\\' . $game;
-        $rules = $gmaeClass::RULES;
-        foreach ($rules as $rule) {
-            $this->line($rule);
+        try {
+            $rules = $gmaeClass::RULES;
+            foreach ($rules as $rule) {
+                $this->line($rule);
+            }
+        } catch (\Error $e) {
+            $this->error("無此遊戲");
+            return 1;
         }
+
         return 0;
     }
 }

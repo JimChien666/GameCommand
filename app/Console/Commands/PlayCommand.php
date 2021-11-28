@@ -19,7 +19,10 @@ class PlayCommand extends Command
     public function handle()
     {
         $game = $this->argument("game");
-        $this->call('game:rule', ['game' => $game]);
+        $return = $this->call('game:rule', ['game' => $game]);
+        if ($return) {
+            return 1;
+        }
         if (!$this->confirm('玩嗎?')) {
             $this->error('下次再來玩喔！');
             return 0;
@@ -28,7 +31,7 @@ class PlayCommand extends Command
         $winNumber = $this->ask('請選擇獲勝場數');
         if (!is_numeric($playerNumber) || !is_numeric($winNumber)) {
             $this->error('遊戲人數或獲勝場數都要輸入數字');
-            return 0;
+            return 1;
         }
         $this->call($game, ["playerNumber" => $playerNumber, "winNumber" => $winNumber]);
 

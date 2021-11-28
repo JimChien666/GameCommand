@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class GameCommand extends Command
 {
-    private const LOGO = <<<LOGO
+    public const LOGO = <<<LOGO
     ______                   
    / ____/___ _____ ___  ___ 
   / / __/ __ `/ __ `__ \/ _ \
@@ -14,7 +14,7 @@ class GameCommand extends Command
  \____/\__,_/_/ /_/ /_/\___/ 
 LOGO;
 
-    private $rules = [
+    public const RULES = [
         "查看遊戲清單" => "game:list",
         "查看遊戲玩法" => "game:rule '<遊戲名稱>'",
         "開始遊戲" => "game:play '<遊戲名稱>'"
@@ -27,7 +27,7 @@ LOGO;
     {
         $this->info(GameCommand::LOGO);
         $this->warn($this->description);
-        foreach ($this->rules as $key => $rule) {
+        foreach (GameCommand::RULES as $key => $rule) {
             $this->info($key . ':');
             $this->line($rule);
         }
