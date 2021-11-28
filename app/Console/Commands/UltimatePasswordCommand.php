@@ -3,12 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\UlitmatePassword;
+use App\Models\UltimatePassword;
 use App\Exceptions\NumberOutOfRangeException;
 
-class UlitmatePasswordCommand extends Command
+class UltimatePasswordCommand extends Command
 {
-    protected $signature = 'UlitmatePassword {playerNumber} {winNumber}';
+    protected $signature = 'UltimatePassword {playerNumber} {winNumber}';
     protected $description = '終極密碼';
 
     public function __construct()
@@ -20,7 +20,7 @@ class UlitmatePasswordCommand extends Command
     {
         $playerNumber = $this->argument("playerNumber");
         $winNumber = $this->argument("winNumber");
-        $game = new UlitmatePassword($playerNumber, $winNumber);
+        $game = new UltimatePassword($playerNumber, $winNumber);
         while (!$game->isGameOver()) {
             $this->showPlayerPoints($game->getPlayerList());
             while (true) {
@@ -49,7 +49,7 @@ class UlitmatePasswordCommand extends Command
         }
     }
 
-    private function playerGuessNumber(UlitmatePassword $game)
+    private function playerGuessNumber(UltimatePassword $game)
     {
         $guess = null;
         while ($guess === null) {

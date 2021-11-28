@@ -9,7 +9,7 @@ class ListCommand extends Command
     protected $signature = 'game:list';
     protected $description = '遊戲列表';
     private $gameList = [
-        'UlitmatePassword'
+        'UltimatePassword'
     ];
 
     public function handle()

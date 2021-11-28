@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Exceptions\NumberOutOfRangeException;
 
-class UlitmatePassword extends Game
+class UltimatePassword extends Game
 {
     const RULES = [
         '遊戲規則同終極密碼遊戲規則(猜到數字者獲勝)',
